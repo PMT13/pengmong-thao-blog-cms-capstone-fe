@@ -3,14 +3,42 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import { BlogListComponent } from './blog-list/blog-list.component';
+import { BlogComponent } from './blog/blog.component';
+import { FullBlogComponent } from './full-blog/full-blog.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { EditBlogDialogComponent } from './edit-blog-dialog/edit-blog-dialog.component';
+import { CreateBlogDialogComponent } from './create-blog-dialog/create-blog-dialog.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserListComponent } from './user-list/user-list.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    BlogListComponent,
+    BlogComponent,
+    FullBlogComponent,
+    EditBlogDialogComponent,
+    CreateBlogDialogComponent,
+    UserListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

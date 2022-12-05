@@ -1,0 +1,5 @@
+<div *ngFor="let blog of blogList">
+  <app-blog [blog]="blog"></app-blog>
+</div>
+<button (click)="openDialog()">Create New Blog</button>
+
