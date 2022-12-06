@@ -1,6 +1,6 @@
 <div class="blogDiv" (click)="goToFullBlog()">
   <div>{{blog.title}}</div>
-  <div>Views: {{blog.views.length}}</div>
-  <div>Comments: {{blog.comments.length}}</div>
+  <div><mat-icon>remove_red_eye</mat-icon>{{blog.views.length}}</div>
+  <div><mat-icon> comment</mat-icon> {{blog.comments.length}}</div>
   <br>
 </div>

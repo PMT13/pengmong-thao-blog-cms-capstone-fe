@@ -1,7 +1,6 @@
-import { IMessage } from "./IMessage";
+import { IMessage } from "../Interfaces/IMessage";
 
-export interface IChat{
-  id: number,
+export interface IAddChatDTO{
   person1: string,
   person2: string,
   messages: IMessage[],

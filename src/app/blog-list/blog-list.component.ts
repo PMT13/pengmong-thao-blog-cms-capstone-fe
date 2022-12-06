@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { IBlog } from '../Interfaces/IBlog';
@@ -10,17 +10,14 @@ import { CreateBlogDialogComponent } from '../create-blog-dialog/create-blog-dia
   templateUrl: './blog-list.component.html',
   styleUrls: ['./blog-list.component.css']
 })
-export class BlogListComponent implements OnDestroy{
+export class BlogListComponent implements OnInit, OnDestroy{
 
   blogList: IBlog[] = [];
+  searchInput!: string;
+
   sub!:Subscription;
-  
+
   constructor(private data: DataService, public dialog: MatDialog) {
-    if(this.data.blogList !== null || this.data.blogList !== undefined) {
-      this.blogList = this.data.blogList.sort(function (a, b) {
-        return Date.parse(b.dateUpdated) - Date.parse(a.dateUpdated)
-      });
-    }
     this.sub = this.data.$blogList.subscribe({
       next: data => {
         if(data !== null || data !== undefined) {
@@ -35,11 +32,23 @@ export class BlogListComponent implements OnDestroy{
     })
   }
 
+  ngOnInit(): void {
+    if(this.data.blogList !== null || this.data.blogList !== undefined) {
+      this.blogList = this.data.blogList.sort(function (a, b) {
+        return Date.parse(b.dateUpdated) - Date.parse(a.dateUpdated)
+      });
+    }
+  }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
   openDialog() {
     this.dialog.open(CreateBlogDialogComponent);
+  }
+
+  filter() {
+    this.blogList = this.data.blogList.filter(blog => blog.title.includes(this.searchInput));
   }
 }

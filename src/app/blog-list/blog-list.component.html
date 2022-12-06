@@ -1,3 +1,5 @@
+<h1>Blogs</h1>
+<input type="test" placeholder="Search here..." (keyup)="filter()" [(ngModel)]="searchInput">
 <div *ngFor="let blog of blogList">
   <app-blog [blog]="blog"></app-blog>
 </div>

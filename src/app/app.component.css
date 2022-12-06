@@ -33,3 +33,12 @@ p{
 .sidenav {
   padding: 20px;
 }
+
+.username{
+  max-width:140px;
+  max-height: 32px;
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor:pointer;
+}

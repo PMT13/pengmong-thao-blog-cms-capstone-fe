@@ -7,6 +7,9 @@ import { IAddAccountDTO } from './dto/IAddAccountDTO';
 import { IComment } from './Interfaces/IComment';
 import { IAddCommentDTO } from './dto/IAddCommentDTO';
 import { IAddBlogDTO } from './dto/IAddBlogDTO';
+import { IChat } from './Interfaces/IChat';
+import { IAddMessageDTO } from './dto/IAddMessageDTO';
+import { IAddChatDTO } from './dto/IAddChatDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +57,21 @@ export class HttpService {
 
   deleteComment(commentId: number, blogId: number){
     return this.httpClient.delete('http://localhost:8080/api/comment/' + blogId + "/" + commentId) as Observable<IBlog[]>;
+  }
+
+  getChatsByUsername(username: string) {
+    return this.httpClient.get('http://localhost:8080/api/chat/' + username) as Observable<IChat[]>;
+  }
+
+  createChat(chat: IAddChatDTO){
+    return this.httpClient.post('http://localhost:8080/api/chat',chat) as Observable<IChat>;
+  }
+  
+  updateChat(chat: IChat){
+    return this.httpClient.put('http://localhost:8080/api/chat',chat) as Observable<IChat[]>;
+  }
+
+  addMessage(message: IAddMessageDTO, chatId: number){
+    return this.httpClient.post('http://localhost:8080/api/message/' + chatId,message) as Observable<IChat[]>;
   }
 }

@@ -12,18 +12,19 @@
         <span class="center-nav" (click)="drawer.toggle()" *ngIf="isloggedIn">Users<mat-icon class="usersIcon">people</mat-icon></span>
         <span class="example-spacer"></span>
         <mat-icon class="profileIcon" [matMenuTriggerFor]="menu" *ngIf="isloggedIn">account_circle</mat-icon>
+        <span class="username" *ngIf="isloggedIn" [matMenuTriggerFor]="menu">{{user}}</span>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="goToProfile()">My Profile</button>
-          <button mat-menu-item (click)="goToMessages()">Messages</button>
-          <button mat-menu-item (click)="logout()">Logout</button>
+          <button mat-menu-item (click)="goToChats()">Chats</button>
+          <button mat-menu-item (click)="logout(drawer)">Logout</button>
         </mat-menu>
       </mat-toolbar>
     </p>
     <app-login *ngIf="!isloggedIn"></app-login>
     <app-blog-list *ngIf="isloggedIn && currentPage === 'blogsList'"></app-blog-list>
     <app-full-blog *ngIf="isloggedIn && currentPage === 'fullBlog'"></app-full-blog>
-<!--    <button type="button" mat-button (click)="drawer.toggle()">-->
-<!--      Toggle sidenav-->
-<!--    </button>-->
+    <app-profile-page  *ngIf="isloggedIn && currentPage === 'profile'"></app-profile-page>
+    <app-chat-list  *ngIf="isloggedIn && currentPage === 'chatsList'"></app-chat-list>
+    <app-chat *ngIf="isloggedIn && isChatOpened"></app-chat>
   </div>
 </mat-drawer-container>

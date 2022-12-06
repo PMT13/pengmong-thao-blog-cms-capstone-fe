@@ -1,5 +1,10 @@
 <p>Users</p>
-<div *ngFor="let account of accountList">
+<input type="test" placeholder="Search here..." (keyup)="filter()" [(ngModel)]="searchInput">
+<div *ngFor="let account of accountList;let i = index" (click)="showOptions(i)">
   <mat-icon>account_circle</mat-icon>
-  {{account.username}}
+  <span class="username">{{account.username}}</span>
+  <div *ngIf="showFiller === i">
+    <button (click)="startChat(account.username)" *ngIf="account.username !== user.username">Message</button>
+    <button (click)="goToProfile(account)">View Profile</button>
+  </div>
 </div>

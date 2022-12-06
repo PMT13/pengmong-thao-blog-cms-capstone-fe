@@ -1,0 +1,10 @@
+<div>
+  <mat-icon>account_circle</mat-icon>
+</div>
+<div>
+  {{profile.username}}
+</div>
+<div *ngFor="let blog of blogList">
+  <app-blog [blog]="blog"></app-blog>
+</div>
+

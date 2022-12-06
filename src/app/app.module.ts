@@ -17,6 +17,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserListComponent } from './user-list/user-list.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ChatListComponent } from './chat-list/chat-list.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     FullBlogComponent,
     EditBlogDialogComponent,
     CreateBlogDialogComponent,
-    UserListComponent
+    UserListComponent,
+    ProfilePageComponent,
+    ChatListComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

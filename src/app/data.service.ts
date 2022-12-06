@@ -7,6 +7,9 @@ import { IAddAccountDTO } from './dto/IAddAccountDTO';
 import { IComment } from './Interfaces/IComment';
 import { IAddCommentDTO } from './dto/IAddCommentDTO';
 import { IAddBlogDTO } from './dto/IAddBlogDTO';
+import { IChat } from './Interfaces/IChat';
+import { IAddMessageDTO } from './dto/IAddMessageDTO';
+import { IAddChatDTO } from './dto/IAddChatDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +20,26 @@ export class DataService {
   $user: Subject<IAccount> = new Subject<IAccount>();
   isLoggedIn: boolean =  false;
   $isLoggedIn: Subject<boolean> = new Subject<boolean>();
-
+  isChatOpened: boolean =  false;
+  $isChatOpened: Subject<boolean> = new Subject<boolean>();
+  
   currentPage: string = "login";
   $currentPage: Subject<string> = new Subject<string>();
   
   fullBlog!: IBlog;
   $fullBlog: Subject<IBlog> = new Subject<IBlog>();
-
-
+  profileAccount!: IAccount;
+  $profileAccount: Subject<IAccount> = new Subject<IAccount>();
+  chatOpened!: IChat;
+  $chatOpened: Subject<IChat> = new Subject<IChat>();
+  
   accountList!: IAccount[];
   $accountList: Subject<IAccount[]> = new Subject<IAccount[]>();
   blogList!: IBlog[];
   $blogList: Subject<IBlog[]> = new Subject<IBlog[]>();
-
+  chatList!: IChat[];
+  $chatList: Subject<IChat[]> = new Subject<IChat[]>();
+  
   constructor(private httpService: HttpService) {
     this.getAllAccounts();
     this.getAllBlogs();
@@ -176,6 +186,67 @@ export class DataService {
           if(blog.id == this.fullBlog.id){
             this.fullBlog = blog;
             this.$fullBlog.next(this.fullBlog);
+          }
+        }
+      },
+      error: (err) => {
+        alert(err);
+      }
+    })
+  }
+  
+  getChatsByUsername(username: string){
+    this.httpService.getChatsByUsername(username).pipe(first()).subscribe({
+      next: data => {
+        this.chatList = data;
+        this.$chatList.next(this.chatList);
+      },
+      error: (err) => {
+        alert(err);
+      }
+    })
+  }
+  
+  createChat(chat: IAddChatDTO) {
+    this.httpService.createChat(chat).pipe(first()).subscribe({
+      next: data => {
+        this.chatOpened = data;
+        this.$chatOpened.next(this.chatOpened);
+        this.isChatOpened = true;
+        this.$isChatOpened.next(true);
+        this.getChatsByUsername(this.user.username);
+      },
+      error: (err) => {
+        alert(err);
+      }
+    })
+  }
+  
+  updateChat(chat: IChat){
+    this.httpService.updateChat(chat).pipe(first()).subscribe({
+      next: data => {
+        this.getChatsByUsername(this.user.username);
+        for(let chat of data){
+          if(chat.id == this.chatOpened.id){
+            this.chatOpened = chat;
+            this.$chatOpened.next(this.chatOpened);
+          }
+        }
+      },
+      error: (err) => {
+        alert(err);
+      }
+    })
+  }
+
+  addMessage(newMessage: IAddMessageDTO, chatId: number) {
+    this.httpService.addMessage(newMessage,chatId).pipe(first()).subscribe({
+      next: data => {
+        this.getChatsByUsername(this.user.username);
+        for(let chat of data){
+          if(chat.id == this.chatOpened.id){
+            this.chatOpened = chat;
+            this.$chatOpened.next(this.chatOpened);
           }
         }
       },

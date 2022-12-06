@@ -33,6 +33,7 @@ export class LoginComponent {
       this.data.$user.next(foundAccount);
       this.data.isLoggedIn = true;
       this.data.$isLoggedIn.next(true);
+      this.data.getChatsByUsername(foundAccount.username);
       this.data.setPage("blogsList");
     }
   }

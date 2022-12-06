@@ -1,0 +1,6 @@
+<div *ngFor="let chat of chatList; let i = index" (click)="openChat(i)">
+  <div>-------------------------------</div>
+  <div *ngIf="chat.person1 === user.username">Chat with {{chat.person2}}</div>
+  <div *ngIf="chat.person1 !== user.username">Chat with {{chat.person1}}</div>
+  <div>-------------------------------</div>
+</div>

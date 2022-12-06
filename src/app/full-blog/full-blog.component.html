@@ -8,7 +8,7 @@
     <button (click)="editBlog()">Edit</button>
     <button (click)="deleteBlog()">Delete</button>
   </div>
-  <div>Comments: </div>
+  <div>Comments ({{blog.comments.length}}) : </div>
   <input type="text" placeholder="Comment here..." [(ngModel)]="newComment">
   <button (click)="postComment()">Post</button>
   <div *ngFor="let comment of blog.comments; let i = index">
