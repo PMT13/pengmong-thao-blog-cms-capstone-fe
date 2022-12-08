@@ -1,0 +1,46 @@
+<div class="row row-cols-2">
+  <div class="blogDiv text-center">
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <h1 class="blogInfo">{{blog.title}}</h1>
+    <div class="blogInfo"><strong>Author:</strong> {{author}}</div>
+    <div class="blogInfo"><strong>Created:</strong> {{blog.dateCreated | date:'medium'}}</div>
+    <div class="blogInfo"><strong>Last Updated:</strong> {{blog.dateUpdated | date:'medium'}}</div>
+    <div class="blogInfo">{{blog.body}}</div>
+    <div *ngIf="isUser">
+      <button mat-raised-button color="primary" class="blogButtons" (click)="deleteBlog()">Delete</button>
+      <button mat-raised-button color="primary" class="blogButtons" (click)="editBlog()">Edit</button>
+    </div>
+  </div>
+  <div class="text-center">
+    <h1>Comments ({{blog.comments.length}}) :</h1>
+    <mat-form-field class="example-full-width">
+      <mat-label>Leave a comment</mat-label>
+      <textarea matInput placeholder="Comment here..." [(ngModel)]="newComment"></textarea>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" (click)="postComment()">Post</button>
+    </div>
+    <div *ngFor="let comment of blog.comments; let i = index">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="header-image"></div>
+          <mat-card-title><span class="commentCreator">{{comment.creator}}</span></mat-card-title>
+        </mat-card-header>
+        <div class="mat-card-body">
+          <mat-card-subtitle>Created: {{comment.dateCreated | date:'medium'}}</mat-card-subtitle>
+          <mat-card-subtitle>Updated: {{comment.dateUpdated | date:'medium'}}</mat-card-subtitle><br>
+          <div *ngIf="isEditingComment === -1">{{comment.body}}</div>
+        </div>
+        <mat-card-actions class="text-center">
+          <input type="text" *ngIf="isEditingComment === i" [(ngModel)]="commentBody">
+          <div *ngIf="comment.creator === user">
+            <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment !== i" (click)="editComment(i)">Edit</button>
+            <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment !== i" (click)="deleteComment(i)">Delete</button>
+            <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment === i" (click)="cancelEdit(i)">Cancel</button>
+            <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment === i" (click)="saveComment(i)">Save</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

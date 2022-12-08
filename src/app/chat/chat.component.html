@@ -1,0 +1,16 @@
+<!--Referenced from:-->
+<!--https://stackblitz.com/edit/angular-chatbox-app?file=src%2Fapp%2Fapp.component.html-->
+
+<div class="chat-box">
+  <div class="header">
+    <h1>Chat with {{chattingWith}}</h1>
+    <div class="close" (click)="closeChat()"><mat-icon>close</mat-icon></div>
+  </div>
+  <div class="message-box" #chat>
+    <li *ngFor="let message of messages; let i = index"><strong>{{message.creator}}:</strong> {{message.body}}</li>
+  </div>
+  <section>
+    <textarea placeholder="Type message here..." [(ngModel)]="messageInput"></textarea>
+    <button mat-raised-button (click)="sendMessage()">Send</button>
+  </section>
+</div>

@@ -1,0 +1,53 @@
+p{
+  margin:0;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.center-nav{
+  margin-right:2%;
+  cursor: pointer;
+}
+
+.profileIcon{
+  font-size: 42px;
+  width: fit-content;
+  height: fit-content;
+  cursor:pointer;
+  margin-right: .5%;
+}
+
+.drawer-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-content {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  padding: 20px;
+}
+
+.username{
+  max-width:140px;
+  max-height: 32px;
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor:pointer;
+}
+
+mat-drawer{
+  width:17%;
+}
+
+.sidenav-content{
+  overflow: hidden;
+}

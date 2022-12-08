@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Create Blog</h2>
+<mat-dialog-content>
+  <div>
+    <label for="title">Blog Title:</label>
+    <input type="text" id="title" [(ngModel)]="blogTitle">
+  </div>
+  <div>
+    <label for="body">Blog Body:</label>
+    <input type="text" id="body" [(ngModel)]="blogBody">
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" (click)="saveBlog()">Save</button>
+</mat-dialog-actions>
