@@ -17,6 +17,7 @@ p{
   height: fit-content;
   cursor:pointer;
   margin-right: .5%;
+  vertical-align: middle;
 }
 
 .drawer-container {
@@ -35,19 +36,26 @@ p{
   padding: 20px;
 }
 
-.username{
-  max-width:140px;
-  max-height: 32px;
-  overflow-x: clip;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor:pointer;
-}
-
 mat-drawer{
   width:17%;
+  background-color: #303030;
 }
 
 .sidenav-content{
-  overflow: hidden;
+  overflow: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sidenav-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.sidenav-content {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.profileDiv{
+  cursor: pointer;
 }

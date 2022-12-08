@@ -6,6 +6,7 @@
     {{profile.username}}
   </div>
   <mat-divider></mat-divider>
+  <h1>{{profile.username}}'s Blogs</h1>
   <div class="row row-cols-4">
     <div *ngFor="let blog of blogList">
       <app-blog [blog]="blog"></app-blog>

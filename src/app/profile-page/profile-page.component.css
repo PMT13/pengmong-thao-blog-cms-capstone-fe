@@ -14,5 +14,13 @@ mat-icon{
 }
 
 .text-center{
-  margin-left: 2%;
+  padding: 2%;
+}
+
+h1{
+  margin-bottom:2%;
+}
+
+.row-cols-4>*{
+  padding-bottom: 2%;
 }

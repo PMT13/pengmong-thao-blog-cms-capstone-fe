@@ -3,9 +3,13 @@ mat-card-actions, .mat-mdc-card-header{
 }
 
 .outer-div{
-  margin: 2%;
+  padding: 2%;
 }
 
 mat-card{
   cursor:pointer;
+}
+
+.row-cols-4>*{
+  padding-bottom: 2%;
 }

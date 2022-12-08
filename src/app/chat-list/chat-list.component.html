@@ -1,14 +1,13 @@
 <div class="row row-cols-4 outer-div">
   <div *ngFor="let chat of chatList; let i = index">
     <mat-card (click)="openChat(i)">
-      <mat-card-header class="text-center">
+      <mat-card-header class="text-center" matBadge="{{countNewMessages(i)}}" matBadgeColor="primary" matBadgeSize="large">
         <mat-card-title *ngIf="chat.person1 === user.username">Chat with {{chat.person2}}</mat-card-title>
         <mat-card-title *ngIf="chat.person1 !== user.username">Chat with {{chat.person1}}</mat-card-title>
         <mat-card-subtitle *ngIf="chat.person1 === user.username">Last Visited: {{chat.lastVisitedPerson1 | date:'medium'}}</mat-card-subtitle>
         <mat-card-subtitle *ngIf="chat.person1 !== user.username">Last Visited: {{chat.lastVisitedPerson2 | date:'medium'}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions class="text-center">
-        <div>You have {{countNewMessages(i)}} new messages!</div>
       </mat-card-actions>
     </mat-card>
   </div>

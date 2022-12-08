@@ -1,12 +1,16 @@
-<h2 mat-dialog-title>Create Blog</h2>
-<mat-dialog-content>
+<mat-dialog-content class="text-center">
+  <h2 mat-dialog-title>Create Blog</h2>
   <div>
-    <label for="title">Blog Title:</label>
-    <input type="text" id="title" [(ngModel)]="blogTitle">
+    <mat-form-field>
+      <mat-label>Blog Title</mat-label>
+      <input matInput placeholder="Type here..." [(ngModel)]="blogTitle">
+    </mat-form-field>
   </div>
   <div>
-    <label for="body">Blog Body:</label>
-    <input type="text" id="body" [(ngModel)]="blogBody">
+    <mat-form-field>
+      <mat-label>Blog Body</mat-label>
+      <textarea matInput placeholder="Type here..." [(ngModel)]="blogBody"></textarea>
+    </mat-form-field>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

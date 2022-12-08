@@ -2,11 +2,20 @@
   margin-top:1%;
 }
 
-input{
+mat-form-field{
   margin-bottom:2%;
   margin-top:1%;
 }
 
 .text-center{
-  margin-left: 2%;
+  padding: 2%;
+}
+
+h1{
+  font-size: 64px;
+  text-decoration: underline;
+}
+
+.row-cols-4>*{
+  padding-bottom: 2%;
 }

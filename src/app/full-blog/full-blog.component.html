@@ -15,7 +15,8 @@
     <h1>Comments ({{blog.comments.length}}) :</h1>
     <mat-form-field class="example-full-width">
       <mat-label>Leave a comment</mat-label>
-      <textarea matInput placeholder="Comment here..." [(ngModel)]="newComment"></textarea>
+      <textarea matInput placeholder="Comment here..." maxlength="256" [(ngModel)]="newComment"></textarea>
+      <mat-hint align="end">{{newComment.length}} / 256</mat-hint>
     </mat-form-field>
     <div>
       <button mat-raised-button color="primary" (click)="postComment()">Post</button>
@@ -32,7 +33,10 @@
           <div *ngIf="isEditingComment === -1">{{comment.body}}</div>
         </div>
         <mat-card-actions class="text-center">
-          <input type="text" *ngIf="isEditingComment === i" [(ngModel)]="commentBody">
+          <mat-form-field class="example-full-width" *ngIf="isEditingComment === i">
+            <textarea matInput placeholder="Comment here..." maxlength="256" [(ngModel)]="commentBody"></textarea>
+            <mat-hint align="end">{{commentBody.length}} / 256</mat-hint>
+          </mat-form-field>
           <div *ngIf="comment.creator === user">
             <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment !== i" (click)="editComment(i)">Edit</button>
             <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment !== i" (click)="deleteComment(i)">Delete</button>

@@ -8,10 +8,20 @@ mat-icon{
   margin-right: 3%;
   font-size: 22px;
 }
-.user{
+.userDiv{
   margin-top:5%;
+  cursor:pointer;
+}
+
+.user:hover{
+  background-color: #c2185b;
 }
 
 button{
   margin:2%;
 }
+
+mat-form-field{
+  width:100%;
+}
+

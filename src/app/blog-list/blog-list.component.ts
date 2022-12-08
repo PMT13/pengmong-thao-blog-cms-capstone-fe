@@ -45,7 +45,10 @@ export class BlogListComponent implements OnInit, OnDestroy{
   }
 
   openDialog() {
-    this.dialog.open(CreateBlogDialogComponent);
+    this.dialog.open(CreateBlogDialogComponent,{
+      height: 'fit-content',
+      width: '600px',
+    });
   }
 
   filter() {

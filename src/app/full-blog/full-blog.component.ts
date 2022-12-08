@@ -75,7 +75,10 @@ export class FullBlogComponent implements OnInit,OnDestroy{
   }
 
   openDialog() {
-    this.dialog.open(EditBlogDialogComponent);
+    this.dialog.open(EditBlogDialogComponent,{
+      height: 'fit-content',
+      width: '600px',
+    });
   }
 
   editComment(i: number) {

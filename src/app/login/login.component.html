@@ -4,7 +4,8 @@
   <div>
     <mat-form-field>
       <mat-label>Username</mat-label>
-      <input matInput placeholder="Type here..." name="username" [(ngModel)]="username">
+      <input matInput placeholder="Type here..." name="username" maxlength="15" [(ngModel)]="username">
+      <mat-hint align="end">{{username.length}} / 15</mat-hint>
     </mat-form-field>
   </div>
   <div>
