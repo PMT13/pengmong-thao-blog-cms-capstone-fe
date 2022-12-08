@@ -25,6 +25,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatButtonModule,
     MatInputModule,
     MatDividerModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

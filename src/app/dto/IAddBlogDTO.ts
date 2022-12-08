@@ -6,6 +6,11 @@ export interface IAddBlogDTO{
   dateUpdated: string,
   body: string,
   creatorId: number,
+  backgroundColor: string,
+  fontColor: string,
+  fontStyle: string,
+  fontSize: number,
+  imageURL: string,
   views: string[],
   comments: IComment[]
 }

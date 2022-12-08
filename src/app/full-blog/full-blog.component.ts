@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { first, Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { IAddCommentDTO } from '../dto/IAddCommentDTO';
@@ -13,9 +13,6 @@ import { EditBlogDialogComponent } from '../edit-blog-dialog/edit-blog-dialog.co
   styleUrls: ['./full-blog.component.css']
 })
 export class FullBlogComponent implements OnInit,OnDestroy{
-  @ViewChild('like')
-  private likeButton!: ElementRef;
-
   blog!: IBlog;
 
   author!: string;

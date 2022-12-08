@@ -44,9 +44,9 @@ export class BlogComponent implements OnInit, OnDestroy{
   }
 
   goToFullBlog() {
-    this.data.setPage("fullBlog");
     this.data.fullBlog = this.blog; 
     this.data.$fullBlog.next(this.blog);
+    this.data.setPage("fullBlog");
     if(!this.blog.views.includes(this.data.user.username)){
       this.blog.views.push(this.data.user.username);
       this.data.updateBlog(this.blog);
