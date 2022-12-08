@@ -24,7 +24,7 @@
       <button mat-raised-button color="primary" (click)="postComment()">Post</button>
     </div>
     <div *ngFor="let comment of blog.comments; let i = index">
-      <mat-card>
+      <mat-card [style.color]="('white')">
         <mat-card-header>
           <div mat-card-avatar class="header-image"></div>
           <mat-card-title><span class="commentCreator">{{comment.creator}}</span></mat-card-title>
