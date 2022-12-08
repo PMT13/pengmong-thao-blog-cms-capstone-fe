@@ -1,0 +1,18 @@
+mat-icon{
+  font-size: 20vh;
+  width: fit-content;
+  height: fit-content;
+}
+
+.profileIconDiv{
+  height:20vh;
+}
+
+.usernameDiv, mat-divider{
+  font-size: 35px;
+  margin-bottom:2%;
+}
+
+.text-center{
+  margin-left: 2%;
+}

@@ -22,7 +22,7 @@ export class EditBlogDialogComponent {
     this.blogBody = this.data.fullBlog.body;
   }
 
-  saveComment() {
+  saveBlog() {
     this.data.fullBlog.title = this.blogTitle;
     this.data.fullBlog.body = this.blogBody;
     this.data.fullBlog.dateUpdated = new Date().toString();

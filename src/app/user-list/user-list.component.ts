@@ -84,6 +84,14 @@ export class UserListComponent implements OnInit, OnDestroy{
         this.data.$chatOpened.next(this.data.chatOpened);
         this.data.isChatOpened = true;
         this.data.$isChatOpened.next(true);
+        if(this.user.username === chat.person1){
+          chat.lastVisitedPerson1 = new Date().toString();
+        }else{
+          if(this.user.username === chat.person2){
+            chat.lastVisitedPerson2 = new Date().toString();
+          }
+        }
+        this.data.updateChat(chat);
         return;
       }
     }
@@ -99,6 +107,6 @@ export class UserListComponent implements OnInit, OnDestroy{
   }
 
   filter() {
-    this.accountList = this.data.accountList.filter(account => account.username.includes(this.searchInput));
+    this.accountList = this.data.accountList.filter(account => account.username.toLowerCase().includes(this.searchInput.toLowerCase()));
   }
 }

@@ -49,6 +49,6 @@ export class BlogListComponent implements OnInit, OnDestroy{
   }
 
   filter() {
-    this.blogList = this.data.blogList.filter(blog => blog.title.includes(this.searchInput));
+    this.blogList = this.data.blogList.filter(blog => blog.title.toLowerCase().includes(this.searchInput.toLowerCase()));
   }
 }

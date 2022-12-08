@@ -1,9 +1,18 @@
-<div *ngIf="error">{{errorMsg}}</div>
-<label for="username">Username</label>
-<input type="text" id="username" name="username" [(ngModel)]="username">
-<br>
-<label for="password">Password</label>
-<input type="text" id="password" name="password" [(ngModel)]="password">
-<br>
-<button (click)="login()">Login</button>
-<button (click)="register()">Register</button>
+<div class="login-form">
+  <h1>Login/Register</h1>
+  <div *ngIf="error">{{errorMsg}}</div>
+  <div>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Type here..." name="username" [(ngModel)]="username">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Type here..." name="password" [(ngModel)]="password">
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" (click)="login()">Login</button>
+  <button mat-raised-button color="primary" (click)="register()">Register</button>
+</div>

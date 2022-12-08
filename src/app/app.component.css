@@ -16,6 +16,7 @@ p{
   width: fit-content;
   height: fit-content;
   cursor:pointer;
+  margin-right: .5%;
 }
 
 .drawer-container {
@@ -41,4 +42,12 @@ p{
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor:pointer;
+}
+
+mat-drawer{
+  width:17%;
+}
+
+.sidenav-content{
+  overflow: hidden;
 }

@@ -1,10 +1,12 @@
-<p>Users</p>
-<input type="test" placeholder="Search here..." (keyup)="filter()" [(ngModel)]="searchInput">
-<div *ngFor="let account of accountList;let i = index" (click)="showOptions(i)">
+<div class="text-center">
+  <p>Users</p>
+  <input type="test" placeholder="Search here..." (keyup)="filter()" [(ngModel)]="searchInput">
+</div>
+<div *ngFor="let account of accountList;let i = index" (click)="showOptions(i)" class="user">
   <mat-icon>account_circle</mat-icon>
   <span class="username">{{account.username}}</span>
   <div *ngIf="showFiller === i">
-    <button (click)="startChat(account.username)" *ngIf="account.username !== user.username">Message</button>
-    <button (click)="goToProfile(account)">View Profile</button>
+    <button mat-raised-button color="primary" (click)="startChat(account.username)" *ngIf="account.username !== user.username">Message</button>
+    <button mat-raised-button color="primary" (click)="goToProfile(account)">View Profile</button>
   </div>
 </div>

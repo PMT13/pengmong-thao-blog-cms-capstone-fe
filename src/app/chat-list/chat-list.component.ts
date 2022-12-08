@@ -12,14 +12,14 @@ import { IChat } from '../Interfaces/IChat';
 export class ChatListComponent implements OnInit, OnDestroy{
   chatList!: IChat[];
   user!: IAccount;
-  
+
   sub!: Subscription;
   subTwo!: Subscription;
-  
+
   constructor(private data: DataService) {
     this.sub = this.data.$chatList.subscribe({
       next: data => {
-        this.chatList = data;
+        this.chatList = data.reverse();
       },
       error: err => {
         alert(err);
@@ -41,7 +41,7 @@ export class ChatListComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.chatList = this.data.chatList;
+    this.chatList = this.data.chatList.reverse();
     this.user = this.data.user;
   }
 
@@ -50,5 +50,37 @@ export class ChatListComponent implements OnInit, OnDestroy{
     this.data.$chatOpened.next(this.data.chatOpened);
     this.data.isChatOpened = true;
     this.data.$isChatOpened.next(true);
+    if(this.user.username === this.chatList[i].person1){
+      this.chatList[i].lastVisitedPerson1 = new Date().toString();
+    }else{
+      if(this.user.username === this.chatList[i].person2){
+        this.chatList[i].lastVisitedPerson2 = new Date().toString();
+      }
+    }
+    this.data.updateChat(this.chatList[i]);
+  }
+
+  countNewMessages(i:number): number{
+    let newMessagesCount = 0;
+    if(this.user.username === this.chatList[i].person1){
+      for(let message of this.chatList[i].messages){
+        if(this.chatList[i].lastVisitedPerson1 < message.dateCreated){
+          if(message.creator !== this.user.username){
+            newMessagesCount++;
+          }
+        }
+      }
+    }else{
+      if (this.user.username === this.chatList[i].person2) {
+        for (let message of this.chatList[i].messages) {
+          if (this.chatList[i].lastVisitedPerson2 < message.dateCreated) {
+            if(message.creator !== this.user.username){
+              newMessagesCount++;
+            }
+          }
+        }
+      }
+    }
+    return newMessagesCount;
   }
 }

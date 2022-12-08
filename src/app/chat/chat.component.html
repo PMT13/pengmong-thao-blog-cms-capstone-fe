@@ -3,10 +3,10 @@
 
 <div class="chat-box">
   <div class="header">
-    <h1>Chat {{participants}}</h1>
+    <h1>Chat with {{chattingWith}}</h1>
     <div class="close" (click)="closeChat()"><mat-icon>close</mat-icon></div>
   </div>
-  <div class="message-box">
+  <div class="message-box" #chat>
     <li *ngFor="let message of messages; let i = index"><strong>{{message.creator}}:</strong> {{message.body}}</li>
   </div>
   <section>

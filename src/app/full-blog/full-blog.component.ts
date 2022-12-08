@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { first, Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { IAddCommentDTO } from '../dto/IAddCommentDTO';
@@ -13,6 +13,8 @@ import { EditBlogDialogComponent } from '../edit-blog-dialog/edit-blog-dialog.co
   styleUrls: ['./full-blog.component.css']
 })
 export class FullBlogComponent implements OnInit,OnDestroy{
+  @ViewChild('like')
+  private likeButton!: ElementRef;
 
   blog!: IBlog;
 
@@ -26,7 +28,7 @@ export class FullBlogComponent implements OnInit,OnDestroy{
 
   sub!:Subscription;
   subTwo!:Subscription;
-  
+
   constructor(private data: DataService, private httpService: HttpService, public dialog: MatDialog) {
     this.sub = this.data.$fullBlog.subscribe({
       next: data => {
@@ -37,7 +39,7 @@ export class FullBlogComponent implements OnInit,OnDestroy{
         alert(err);
       }
     })
-    
+
     this.subTwo = this.data.$user.subscribe({
       next: data => {
         this.user = data.username;
@@ -105,8 +107,7 @@ export class FullBlogComponent implements OnInit,OnDestroy{
         creator: this.data.user.username,
         dateCreated: currentDate.toString(),
         dateUpdated:currentDate.toString(),
-        body: this.newComment,
-        likes: []
+        body: this.newComment
       }
     this.data.addComment(newComment,this.blog.id);
     this.newComment = "";

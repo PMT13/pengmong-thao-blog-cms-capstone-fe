@@ -1,10 +1,15 @@
-<div>
-  <mat-icon>account_circle</mat-icon>
-</div>
-<div>
-  {{profile.username}}
-</div>
-<div *ngFor="let blog of blogList">
-  <app-blog [blog]="blog"></app-blog>
+<div class="text-center">
+  <div class="profileIconDiv">
+    <mat-icon>account_circle</mat-icon>
+  </div>
+  <div class="usernameDiv">
+    {{profile.username}}
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row row-cols-4">
+    <div *ngFor="let blog of blogList">
+      <app-blog [blog]="blog"></app-blog>
+    </div>
+  </div>
 </div>
 

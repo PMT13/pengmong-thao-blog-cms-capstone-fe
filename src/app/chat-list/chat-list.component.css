@@ -1,0 +1,11 @@
+mat-card-actions, .mat-mdc-card-header{
+  display:block;
+}
+
+.outer-div{
+  margin: 2%;
+}
+
+mat-card{
+  cursor:pointer;
+}

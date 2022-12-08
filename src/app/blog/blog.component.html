@@ -1,6 +1,13 @@
-<div class="blogDiv" (click)="goToFullBlog()">
-  <div>{{blog.title}}</div>
-  <div><mat-icon>remove_red_eye</mat-icon>{{blog.views.length}}</div>
-  <div><mat-icon> comment</mat-icon> {{blog.comments.length}}</div>
-  <br>
-</div>
+<mat-card (click)="goToFullBlog()">
+  <mat-card-header>
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>{{blog.title}}</mat-card-title>
+    <mat-card-subtitle>{{blogAuthor}}</mat-card-subtitle>
+    <mat-card-subtitle>{{blog.dateUpdated | date:'medium'}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-actions class="text-center">
+    <div class="views"><mat-icon>remove_red_eye</mat-icon>{{blog.views.length}}</div>
+    <div class="comments"><mat-icon> comment</mat-icon> {{blog.comments.length}}</div>
+  </mat-card-actions>
+</mat-card>

@@ -1,7 +1,12 @@
-<h1>Blogs</h1>
-<input type="test" placeholder="Search here..." (keyup)="filter()" [(ngModel)]="searchInput">
-<div *ngFor="let blog of blogList">
-  <app-blog [blog]="blog"></app-blog>
+<div class="text-center">
+  <div class="createBlog">
+    <button mat-raised-button color="primary" (click)="openDialog()">Create New Blog</button>
+  </div>
+  <input type="text" placeholder="Search by title" (keyup)="filter()" [(ngModel)]="searchInput">
+  <div class="row row-cols-4">
+    <div *ngFor="let blog of blogList">
+      <app-blog [blog]="blog"></app-blog>
+    </div>
+  </div>
 </div>
-<button (click)="openDialog()">Create New Blog</button>
 

@@ -3,6 +3,5 @@ export interface IComment{
   creator: string,
   dateCreated: string,
   dateUpdated: string,
-  body: string,
-  likes: string[]
+  body: string
 }

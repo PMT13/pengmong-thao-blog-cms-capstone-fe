@@ -27,7 +27,7 @@ export class CreateBlogDialogComponent {
         dateUpdated: new Date().toString(),
         body: this.blogBody,
         creatorId: this.data.user.id,
-        views: [],
+        views: [this.data.user.username],
         comments: []
       }
     this.data.createBlog(newBlog);

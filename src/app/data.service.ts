@@ -22,24 +22,24 @@ export class DataService {
   $isLoggedIn: Subject<boolean> = new Subject<boolean>();
   isChatOpened: boolean =  false;
   $isChatOpened: Subject<boolean> = new Subject<boolean>();
-  
+
   currentPage: string = "login";
   $currentPage: Subject<string> = new Subject<string>();
-  
+
   fullBlog!: IBlog;
   $fullBlog: Subject<IBlog> = new Subject<IBlog>();
   profileAccount!: IAccount;
   $profileAccount: Subject<IAccount> = new Subject<IAccount>();
   chatOpened!: IChat;
   $chatOpened: Subject<IChat> = new Subject<IChat>();
-  
+
   accountList!: IAccount[];
   $accountList: Subject<IAccount[]> = new Subject<IAccount[]>();
   blogList!: IBlog[];
   $blogList: Subject<IBlog[]> = new Subject<IBlog[]>();
   chatList!: IChat[];
   $chatList: Subject<IChat[]> = new Subject<IChat[]>();
-  
+
   constructor(private httpService: HttpService) {
     this.getAllAccounts();
     this.getAllBlogs();
@@ -61,18 +61,6 @@ export class DataService {
       }
     })
   }
-
-  // getAccountById(creatorId: number): void {
-  //   this.httpService.getAccountById(creatorId).pipe(first()).subscribe({
-  //     next: data => {
-  //       return data.username;
-  //     },
-  //     error: (err) => {
-  //       alert(err);
-  //       return "Account Not Found";
-  //     }
-  //   })
-  // }
 
   createAccount(newAccount: IAddAccountDTO): void {
     this.httpService.createAccount(newAccount).pipe(first()).subscribe({
@@ -194,7 +182,7 @@ export class DataService {
       }
     })
   }
-  
+
   getChatsByUsername(username: string){
     this.httpService.getChatsByUsername(username).pipe(first()).subscribe({
       next: data => {
@@ -206,7 +194,7 @@ export class DataService {
       }
     })
   }
-  
+
   createChat(chat: IAddChatDTO) {
     this.httpService.createChat(chat).pipe(first()).subscribe({
       next: data => {
@@ -221,7 +209,7 @@ export class DataService {
       }
     })
   }
-  
+
   updateChat(chat: IChat){
     this.httpService.updateChat(chat).pipe(first()).subscribe({
       next: data => {

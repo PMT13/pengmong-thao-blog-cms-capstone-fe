@@ -10,13 +10,13 @@ import { IBlog } from '../Interfaces/IBlog';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit, OnDestroy{
-  
+
   profile!: IAccount;
   blogList: IBlog[] = [];
-  
+
   sub!: Subscription;
   subTwo!: Subscription;
-  
+
   constructor(private data: DataService) {
     this.sub = this.data.$blogList.subscribe({
       next: data => {

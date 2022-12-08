@@ -20,6 +20,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ChatListComponent } from './chat-list/chat-list.component';
 import { ChatComponent } from './chat/chat.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +49,11 @@ import { ChatComponent } from './chat/chat.component';
     MatToolbarModule,
     MatMenuModule,
     BrowserAnimationsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
