@@ -6,3 +6,17 @@ mat-dialog-content{
 mat-form-field{
   width:80%;
 }
+
+.blogStyle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 50px;
+  margin: auto auto 3%;
+  font-size: 24px;
+}
+
+img{
+  width:60%;
+}

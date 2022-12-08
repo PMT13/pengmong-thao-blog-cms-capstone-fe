@@ -1,5 +1,5 @@
 <mat-dialog-content class="text-center">
-  <h2 mat-dialog-title>Edit Blog</h2>
+  <h2 mat-dialog-title>Create Blog</h2>
   <div>
     <mat-form-field>
       <mat-label>Blog Title</mat-label>
@@ -11,6 +11,38 @@
       <mat-label>Blog Body</mat-label>
       <textarea matInput placeholder="Type here..." [(ngModel)]="blogBody"></textarea>
     </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose background color</mat-label>
+      <mat-select [(value)]="backgroundColor">
+        <mat-option *ngFor="let color of colors" value="{{color}}"><p [style.color]=color>{{color}}</p></mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose font color</mat-label>
+      <mat-select [(value)]="fontColor">
+        <mat-option *ngFor="let color of colors" value="{{color}}"><p [style.color]=color>{{color}}</p></mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose font style</mat-label>
+      <mat-select [(value)]="fontStyle">
+        <mat-option *ngFor="let font of fonts" value="{{font}}"><p [style.font-family]=font>{{font}}</p></mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Font Size</mat-label>
+      <input matInput type="number" max="24" [(ngModel)]="fontSize">
+      <mat-hint align="end">Must be >= 12 and <= 30</mat-hint>
+    </mat-form-field>
+    <div class="blogStyle" [style.font-family]="fontStyle"
+         [style.color]="fontColor" [style.background-color]="backgroundColor">Your Blog Style Preview</div>
+    <mat-form-field>
+      <mat-label>Upload Image URL</mat-label>
+      <input matInput type="text" [(ngModel)]="imageURL">
+    </mat-form-field>
+    <div><img src="{{imageURL}}"></div>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

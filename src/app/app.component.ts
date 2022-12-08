@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from './data.service';
 
@@ -8,22 +8,25 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnDestroy{
+  @ViewChild('sidenavContent')
+  private sidenavContent!: ElementRef;
+
   title = 'pengmong-thao-blog-cms-capstone-fe';
-  
+
   user!: string;
   isloggedIn!: boolean;
   currentPage!: string;
   isChatOpened!: boolean;
-  
+
   sub!: Subscription;
   subTwo!: Subscription;
-  subThree!: Subscription; 
-  
+  subThree!: Subscription;
+
   constructor(private data: DataService) {
     this.isloggedIn = this.data.isLoggedIn;
     this.currentPage = this.data.currentPage;
     this.isChatOpened = this.data.isChatOpened;
-    
+
     this.sub = this.data.$isLoggedIn.subscribe({
       next: isloggedIn => {
         this.isloggedIn = isloggedIn;
@@ -39,6 +42,13 @@ export class AppComponent implements OnDestroy{
     this.subTwo = this.data.$currentPage.subscribe({
       next: data => {
         this.currentPage = data;
+        if(this.currentPage === "fullBlog"){
+          this.sidenavContent.nativeElement.style.color = this.data.fullBlog.fontColor;
+          this.sidenavContent.nativeElement.style.backgroundColor = this.data.fullBlog.backgroundColor;
+        }else{
+          this.sidenavContent.nativeElement.style.color = "white";
+          this.sidenavContent.nativeElement.style.backgroundColor = "#303030";
+        }
       },
       error: (err) => {
         alert(err);
@@ -47,7 +57,7 @@ export class AppComponent implements OnDestroy{
 
     this.subThree = this.data.$isChatOpened.subscribe({
       next: data => {
-        this.isChatOpened = data; 
+        this.isChatOpened = data;
       },
       error: (err) => {
         alert(err);
@@ -89,5 +99,7 @@ export class AppComponent implements OnDestroy{
     }
     this.data.isChatOpened = false;
     this.data.$isChatOpened.next(false);
+    this.sidenavContent.nativeElement.style.color = "white";
+    this.sidenavContent.nativeElement.style.backgroundColor = "#303030";
   }
 }
