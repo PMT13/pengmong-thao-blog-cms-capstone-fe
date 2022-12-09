@@ -1,0 +1,27 @@
+<mat-dialog-content class="text-center">
+  <h2 mat-dialog-title>Edit Account</h2>
+  <div>
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Type here..." max="15" [(ngModel)]="editUsername">
+      <mat-hint align="end">{{editUsername.length}} / 15</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Type here..." [(ngModel)]="editPassword">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Upload Image URL</mat-label>
+      <input matInput type="text" [(ngModel)]="imageURL">
+    </mat-form-field>
+    <div><img src="{{imageURL}}"></div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="cancelEdit()">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" (click)="saveAccount()">Save</button>
+</mat-dialog-actions>
