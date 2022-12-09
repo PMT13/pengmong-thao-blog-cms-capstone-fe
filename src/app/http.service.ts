@@ -31,6 +31,9 @@ export class HttpService {
     return this.httpClient.post('http://localhost:8080/api/account',account) as Observable<IAccount>;
   }
   
+  updateAccount(account: IAddAccountDTO){
+    return this.httpClient.put('http://localhost:8080/api/account',account) as Observable<IAccount>;
+  }
   getAllBlogs() {
     return this.httpClient.get('http://localhost:8080/api/blog/all') as Observable<IBlog[]>;
   }

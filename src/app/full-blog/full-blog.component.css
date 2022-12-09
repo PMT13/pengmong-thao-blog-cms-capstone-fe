@@ -15,6 +15,7 @@ img{
 
 .blogBody{
   padding: 5%;
+  overflow-wrap: anywhere;
 }
 
 .blogButtons, .commentButtons{
@@ -33,11 +34,6 @@ textarea{
 
 mat-card{
   margin: 2%;
-}
-
-.header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
 }
 
 .mat-card-body{

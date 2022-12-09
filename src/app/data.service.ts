@@ -78,6 +78,23 @@ export class DataService {
     })
   }
 
+  updateAccount(account: IAccount): void{
+    this.httpService.updateAccount(account).pipe(first()).subscribe({
+      next: data => {
+        this.getAllAccounts();
+        this.user = data;
+        this.$user.next(this.user);
+        this.profileAccount = data;
+        this.$profileAccount.next(this.profileAccount);
+        this.currentPage = "profile";
+        this.$currentPage.next(this.currentPage);
+      },
+      error: (err) => {
+        alert(err);
+      }
+    })
+  }
+  
   getAllBlogs():void{
     this.httpService.getAllBlogs().pipe(first()).subscribe({
       next: data => {

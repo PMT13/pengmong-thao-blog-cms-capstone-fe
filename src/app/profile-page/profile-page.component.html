@@ -1,16 +1,22 @@
 <div class="text-center">
-  <div class="profileIconDiv">
-    <mat-icon>account_circle</mat-icon>
-  </div>
-  <div class="usernameDiv">
-    {{profile.username}}
-  </div>
-  <mat-divider></mat-divider>
-  <h1>{{profile.username}}'s Blogs</h1>
-  <div class="row row-cols-4">
-    <div *ngFor="let blog of blogList">
-      <app-blog [blog]="blog"></app-blog>
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar [style.background-image]="('url(' + profile.profilePic + ')')" [style.background-size]="('cover')">
+      </div>
+    </mat-card-header>
+    <div class="usernameDiv">
+      {{profile.username}}
     </div>
-  </div>
+    <div class="buttonDiv" *ngIf="user === profile.username">
+      <button mat-raised-button color="primary" (click)="openDialog()">Edit</button>
+    </div>
+    <mat-divider></mat-divider>
+    <h1>{{profile.username}}'s Blogs</h1>
+    <div class="row row-cols-4">
+      <div *ngFor="let blog of blogList">
+        <app-blog [blog]="blog"></app-blog>
+      </div>
+    </div>
+  </mat-card>
 </div>
 

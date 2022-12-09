@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from './data.service';
+import { IAccount } from './Interfaces/IAccount';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnDestroy{
 
   title = 'pengmong-thao-blog-cms-capstone-fe';
 
-  user!: string;
+  user!: IAccount;
   isloggedIn!: boolean;
   currentPage!: string;
   isChatOpened!: boolean;
@@ -21,7 +22,8 @@ export class AppComponent implements OnDestroy{
   sub!: Subscription;
   subTwo!: Subscription;
   subThree!: Subscription;
-
+  subFour!: Subscription;
+  
   constructor(private data: DataService) {
     this.isloggedIn = this.data.isLoggedIn;
     this.currentPage = this.data.currentPage;
@@ -31,7 +33,7 @@ export class AppComponent implements OnDestroy{
       next: isloggedIn => {
         this.isloggedIn = isloggedIn;
         if(isloggedIn === true){
-          this.user = data.user.username;
+          this.user = data.user;
         }
       },
       error: (err) => {
@@ -63,12 +65,22 @@ export class AppComponent implements OnDestroy{
         alert(err);
       }
     })
+
+    this.subFour = this.data.$user.subscribe({
+      next: data => {
+        this.user = data;
+      },
+      error: (err) => {
+        alert(err);
+      }
+    })
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
     this.subTwo.unsubscribe();
     this.subThree.unsubscribe();
+    this.subFour.unsubscribe();
   }
 
   goToBlogsList() {

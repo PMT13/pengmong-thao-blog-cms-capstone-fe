@@ -13,3 +13,10 @@ mat-card{
 .row-cols-4>*{
   padding-bottom: 2%;
 }
+
+h1{
+  text-decoration: underline;
+  margin: auto;
+  padding-top: 2%;
+  font-size: 54px;
+}

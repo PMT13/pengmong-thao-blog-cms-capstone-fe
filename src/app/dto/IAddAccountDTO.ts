@@ -1,4 +1,5 @@
 export interface IAddAccountDTO {
   username: string,
-  password: string
+  password: string,
+  profilePic: string
 }

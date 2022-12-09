@@ -1,16 +1,27 @@
-mat-icon{
-  font-size: 20vh;
-  width: fit-content;
-  height: fit-content;
+.mat-mdc-card{
+  background-color:#303030;
 }
 
-.profileIconDiv{
-  height:20vh;
+.mat-mdc-card-header {
+  display: flex;
+  padding: 16px 16px 0;
+  justify-content: center;
 }
 
-.usernameDiv, mat-divider{
-  font-size: 35px;
+.mat-mdc-card-avatar{
+  width:200px;
+  height:200px;
+  background-position: center;
+}
+
+mat-divider{
   margin-bottom:2%;
+  margin-top:2%;
+}
+
+.usernameDiv{
+  font-size: 35px;
+  padding-bottom: 1%;
 }
 
 .text-center{

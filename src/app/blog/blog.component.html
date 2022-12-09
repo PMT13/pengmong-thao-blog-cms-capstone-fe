@@ -1,6 +1,6 @@
 <mat-card (click)="goToFullBlog()">
   <mat-card-header>
-    <div mat-card-avatar class="header-image"></div>
+    <div mat-card-avatar [style.background-image]="('url(' + user.profilePic + ')')" [style.background-size]="('cover')"></div>
     <mat-card-title>{{blog.title}}</mat-card-title>
     <mat-card-subtitle>{{blogAuthor}}</mat-card-subtitle>
     <mat-card-subtitle>{{blog.dateUpdated | date:'medium'}}</mat-card-subtitle>

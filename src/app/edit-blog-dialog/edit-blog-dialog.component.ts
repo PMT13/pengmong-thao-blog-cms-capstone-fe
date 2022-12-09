@@ -242,6 +242,7 @@ export class EditBlogDialogComponent {
     this.data.fullBlog.fontSize = this.fontSize;
     this.data.fullBlog.dateUpdated = new Date().toString();
     this.data.updateBlog(this.data.fullBlog);
+    this.data.$fullBlog.next(this.data.fullBlog);
     this.data.$currentPage.next(this.data.currentPage);
   }
 }

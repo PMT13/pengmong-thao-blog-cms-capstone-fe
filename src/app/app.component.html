@@ -11,9 +11,9 @@
         <span class="center-nav" (click)="goToBlogsList()" *ngIf="isloggedIn" style="margin-left:7%;">Blogs<mat-icon class="blogsIcon">library_books</mat-icon></span>
         <span class="center-nav" (click)="drawer.toggle()" *ngIf="isloggedIn">Users<mat-icon class="usersIcon">people</mat-icon></span>
         <span class="example-spacer"></span>
-        <span class="profileDiv" [matMenuTriggerFor]="menu">
-          <mat-icon class="profileIcon" *ngIf="isloggedIn">account_circle</mat-icon>
-          <span class="username" *ngIf="isloggedIn">{{user}}</span>
+        <span class="profileDiv" [matMenuTriggerFor]="menu" *ngIf="isloggedIn">
+          <img mat-card-avatar [style.background-image]="('url(' + user.profilePic + ')')" [style.background-size]="('cover')">
+          <span class="username">{{user.username}}</span>
         </span>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="goToProfile()">My Profile</button>

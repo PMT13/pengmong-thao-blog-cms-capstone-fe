@@ -58,7 +58,8 @@ export class LoginComponent {
     const newAccount: IAddAccountDTO =
       {
         username:this.username,
-        password:this.password
+        password:this.password,
+        profilePic: "https://t4.ftcdn.net/jpg/05/09/59/75/360_F_509597532_RKUuYsERhODmkxkZd82pSHnFtDAtgbzJ.jpg"
       }
     this.data.createAccount(newAccount);
   }

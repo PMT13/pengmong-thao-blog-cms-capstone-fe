@@ -26,6 +26,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSelectModule} from '@angular/material/select';
+import { EditAccountDialogComponent } from './edit-account-dialog/edit-account-dialog.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {MatSelectModule} from '@angular/material/select';
     UserListComponent,
     ProfilePageComponent,
     ChatListComponent,
-    ChatComponent
+    ChatComponent,
+    EditAccountDialogComponent
   ],
   imports: [
     BrowserModule,

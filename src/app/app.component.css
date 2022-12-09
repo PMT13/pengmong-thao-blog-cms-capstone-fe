@@ -58,4 +58,22 @@ mat-drawer{
 
 .profileDiv{
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-mdc-card-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-bottom: 0;
+  padding-right: 1%;
+  object-fit: cover;
+  background-position: center;
+}
+
+.username{
+  padding:5%;
 }

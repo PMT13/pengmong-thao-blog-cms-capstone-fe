@@ -1,5 +1,6 @@
 export interface IAccount{
   id: number,
   username: string,
-  password: string
+  password: string,
+  profilePic: string
 }

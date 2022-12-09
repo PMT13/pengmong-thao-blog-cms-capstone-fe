@@ -7,7 +7,7 @@
 </div>
 <div *ngFor="let account of accountList;let i = index" (click)="showOptions(i)" class="userDiv">
   <div class="user">
-    <mat-icon>account_circle</mat-icon>
+    <img mat-card-avatar [style.background-image]="('url(' + account.profilePic + ')')" [style.background-size]="('cover')">
     <span class="username">{{account.username}}</span>
   </div>
   <div *ngIf="showFiller === i">
