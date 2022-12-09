@@ -15,6 +15,7 @@
   <div class="text-center">
     <h1 [style.font-family]="blog.fontStyle"
         [style.color]="blog.fontColor">Comments ({{blog.comments.length}}) :</h1>
+    <app-error-alert *ngIf="error"></app-error-alert>
     <mat-form-field class="example-full-width">
       <mat-label>Leave a comment</mat-label>
       <textarea matInput placeholder="Comment here..." maxlength="256" [(ngModel)]="newComment"></textarea>
@@ -23,7 +24,7 @@
     <div>
       <button mat-raised-button color="primary" (click)="postComment()">Post</button>
     </div>
-    <div *ngFor="let comment of blog.comments; let i = index">
+    <div *ngFor="let comment of blog.comments; let i = index" class="commentDiv">
       <mat-card [style.color]="('white')">
         <mat-card-header>
           <div mat-card-avatar class="header-image"></div>

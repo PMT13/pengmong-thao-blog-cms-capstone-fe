@@ -20,6 +20,7 @@ export class FullBlogComponent implements OnInit,OnDestroy{
   isUser!: boolean;
 
   isEditingComment: number = -1;
+  error: boolean = false;
   commentBody: string = "";
   newComment: string = "";
 
@@ -94,6 +95,18 @@ export class FullBlogComponent implements OnInit,OnDestroy{
   }
 
   saveComment(i: number) {
+    if(this.commentBody === ""){
+      this.data.errorMsg = "No empty comments allowed";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
+    if(this.commentBody.replace(/\s/g, '') === ""){
+      this.data.errorMsg = "No empty comments allowed";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
     this.blog.comments[i].body = this.commentBody;
     this.blog.comments[i].dateUpdated = new Date().toString();
     this.data.updateComment(this.blog.comments[i]);
@@ -101,6 +114,18 @@ export class FullBlogComponent implements OnInit,OnDestroy{
   }
 
   postComment(){
+    if(this.newComment === ""){
+      this.data.errorMsg = "Empty Comment";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
+    if(this.newComment.replace(/\s/g, '') === ""){
+      this.data.errorMsg = "Empty Comment";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
     const currentDate = new Date();
     const newComment:IAddCommentDTO =
       {

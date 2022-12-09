@@ -24,8 +24,7 @@ img{
 }
 
 mat-form-field{
-  width:80%;
-  margin-top: 2%;
+  width:60%;
 }
 
 textarea{
@@ -50,4 +49,9 @@ mat-card{
 
 .mdc-card__actions{
   display: block;
+}
+
+.commentDiv{
+  width: 80%;
+  margin: auto;
 }

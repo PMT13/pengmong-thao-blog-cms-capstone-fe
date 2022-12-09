@@ -8,8 +8,7 @@ import { IAddAccountDTO } from '../dto/IAddAccountDTO';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
-  errorMsg: string = "";
+  
   error: boolean = false;
 
   username: string = "";
@@ -24,10 +23,12 @@ export class LoginComponent {
         account.password === this.password
     });
     if( foundAccount === undefined){
-      this.errorMsg = "Invalid Login";
+      this.data.errorMsg = "Invalid Login";
+      this.data.$errorMsg.next(this.data.errorMsg);
       this.error = true;
     }else{
-      this.errorMsg = "Succesful Login";
+      this.data.errorMsg = "Succesful Login";
+      this.data.$errorMsg.next(this.data.errorMsg);
       this.error = true;
       this.data.user = foundAccount;
       this.data.$user.next(foundAccount);
@@ -41,17 +42,26 @@ export class LoginComponent {
   register(): void {
     const accountExist = this.data.accountList.find((account) => {return account.username === this.username});
     if( accountExist !== undefined){
-      this.errorMsg = "Username already exists.";
+      this.data.errorMsg = "Username already exists.";
+      this.data.$errorMsg.next(this.data.errorMsg);
       this.error = true;
       return;
     }
     if(this.username === undefined || this.password === undefined){
-      this.errorMsg = "Please fill in all input fields";
+      this.data.errorMsg = "Please fill in all input fields";
+      this.data.$errorMsg.next(this.data.errorMsg);
       this.error = true;
       return;
     }
-    if(this.username.replace(/\s/g, '') === "" || this.password.replace(/\s/g, '') === ""){
-      this.errorMsg = "Please fill in all input fields";
+    if(this.username.includes(" ")){
+      this.data.errorMsg = "No spaces allowed in input fields";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
+    if(this.username === "" || this.password === ""){
+      this.data.errorMsg = "Please fill in all input fields";
+      this.data.$errorMsg.next(this.data.errorMsg);
       this.error = true;
       return;
     }

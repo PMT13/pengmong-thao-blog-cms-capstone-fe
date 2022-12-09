@@ -1,6 +1,6 @@
 <div class="login-form">
   <h1>Login/Register</h1>
-  <div *ngIf="error">{{errorMsg}}</div>
+  <app-error-alert *ngIf="error"></app-error-alert>
   <div>
     <mat-form-field>
       <mat-label>Username</mat-label>

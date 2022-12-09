@@ -23,6 +23,9 @@ export class DataService {
   isChatOpened: boolean =  false;
   $isChatOpened: Subject<boolean> = new Subject<boolean>();
 
+  errorMsg: string = "";
+  $errorMsg: Subject<string> = new Subject<string>();
+  
   currentPage: string = "login";
   $currentPage: Subject<string> = new Subject<string>();
 

@@ -27,6 +27,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSelectModule} from '@angular/material/select';
 import { EditAccountDialogComponent } from './edit-account-dialog/edit-account-dialog.component';
+import { ErrorAlertComponent } from './error-alert/error-alert.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { EditAccountDialogComponent } from './edit-account-dialog/edit-account-d
     ProfilePageComponent,
     ChatListComponent,
     ChatComponent,
-    EditAccountDialogComponent
+    EditAccountDialogComponent,
+    ErrorAlertComponent
   ],
   imports: [
     BrowserModule,

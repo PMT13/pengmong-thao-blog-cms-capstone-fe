@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DataService } from '../data.service';
 import { IAddBlogDTO } from '../dto/IAddBlogDTO';
 
@@ -16,6 +17,7 @@ export class CreateBlogDialogComponent {
   backgroundColor: string = "";
   imageURL: string = "";
   fontSize: number = 18;
+  error: boolean = false;
 
   fonts = ["Arial, sans-serif",
     "Helvetica, sans-serif",
@@ -210,7 +212,7 @@ export class CreateBlogDialogComponent {
     "YellowGreen",
   ];
 
-  constructor(private data: DataService) {
+  constructor(private data: DataService, private dialogRef: MatDialogRef<CreateBlogDialogComponent>) {
   }
 
   cancel() {
@@ -221,12 +223,36 @@ export class CreateBlogDialogComponent {
     this.backgroundColor = "";
     this.imageURL = "";
     this.fontSize = 18;
+    this.error = false;
   }
 
   saveBlog() {
     if(this.fontSize > 30 || this.fontSize < 12){
-      this.fontSize = 18;
+      this.data.errorMsg = "Font size is out of range";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
     }
+
+    if(this.blogTitle === "" || this.blogBody === "" || this.imageURL === "" || this.fontSize === null){
+      this.data.errorMsg = "Please fill out required fields";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
+    
+    if(this.fontStyle === ""){
+      this.fontStyle = "Times, Times New Roman, serif";
+    }
+
+    if(this.fontColor === ""){
+      this.fontColor = "white"
+    }
+
+    if(this.backgroundColor === ""){
+      this.backgroundColor = "#303030";
+    }
+
     const newBlog: IAddBlogDTO =
       {
         title: this.blogTitle,
@@ -243,5 +269,11 @@ export class CreateBlogDialogComponent {
         fontSize: this.fontSize
       }
     this.data.createBlog(newBlog);
+    this.dialogRef.close();
+  }
+
+  badImg($event: ErrorEvent) {
+    // @ts-ignore
+    event.target.src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png';
   }
 }

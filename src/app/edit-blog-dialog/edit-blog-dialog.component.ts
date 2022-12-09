@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DataService } from '../data.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class EditBlogDialogComponent {
   backgroundColor: string = "";
   imageURL: string = "";
   fontSize: number = 18;
-
+  error: boolean = false;
+  
   fonts = ["Arial, sans-serif",
     "Helvetica, sans-serif",
     "Verdana, sans-serif",
@@ -209,7 +211,7 @@ export class EditBlogDialogComponent {
     "YellowGreen",
   ];
   
-  constructor(private data: DataService) {
+  constructor(private data: DataService, private dialogRef: MatDialogRef<EditBlogDialogComponent>) {
     this.blogTitle = this.data.fullBlog.title;
     this.blogBody = this.data.fullBlog.body;
     this.fontStyle = this.data.fullBlog.fontStyle;
@@ -227,12 +229,36 @@ export class EditBlogDialogComponent {
     this.backgroundColor = this.data.fullBlog.backgroundColor;
     this.imageURL = this.data.fullBlog.imageURL;
     this.fontSize = this.data.fullBlog.fontSize;
+    this.error = false;
   }
 
   saveBlog() {
     if(this.fontSize > 30 || this.fontSize < 12){
-      this.fontSize = 18;
+      this.data.errorMsg = "Invalid font size";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
     }
+
+    if(this.blogTitle === "" || this.blogBody === "" || this.imageURL === ""){
+      this.data.errorMsg = "Please fill out required fields";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
+    
+    if(this.fontStyle === ""){
+      this.fontStyle = "Times, Times New Roman, serif";
+    }
+
+    if(this.fontColor === ""){
+      this.fontColor = "white"
+    }
+
+    if(this.backgroundColor === ""){
+      this.backgroundColor = "#303030";
+    }
+    
     this.data.fullBlog.title = this.blogTitle;
     this.data.fullBlog.body = this.blogBody;
     this.data.fullBlog.fontStyle = this.fontStyle;
@@ -244,5 +270,11 @@ export class EditBlogDialogComponent {
     this.data.updateBlog(this.data.fullBlog);
     this.data.$fullBlog.next(this.data.fullBlog);
     this.data.$currentPage.next(this.data.currentPage);
+    this.dialogRef.close();
+  }
+
+  badImg(event: ErrorEvent) {
+    // @ts-ignore
+    event.target.src='https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png';
   }
 }
