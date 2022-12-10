@@ -72,7 +72,6 @@ export class EditAccountDialogComponent {
       for(let view of blog.views){
         if(view === this.data.profileAccount.username){
           blog.views[blog.views.indexOf(view)] = this.editUsername;
-          console.log(view);
           this.data.updateBlog(blog);
         }
       }

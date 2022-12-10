@@ -127,7 +127,6 @@ export class DataService {
   updateBlog(blog: IBlog):void {
     this.httpService.updateBlog(blog).pipe(first()).subscribe({
       next: data => {
-        console.log(data);
         this.blogList = data;
         this.$blogList.next(this.blogList);
       },
