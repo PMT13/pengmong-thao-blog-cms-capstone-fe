@@ -13,7 +13,7 @@ export class EditAccountDialogComponent {
   editPassword: string;
   imageURL: string;
   error: boolean = false;
-  
+
   constructor(private data: DataService, private dialogRef: MatDialogRef<EditAccountDialogComponent>) {
     this.editUsername = this.data.profileAccount.username;
     this.editPassword = this.data.profileAccount.password;
@@ -61,6 +61,22 @@ export class EditAccountDialogComponent {
         password: this.editPassword,
         profilePic: this.imageURL
       }
+
+    for(let blog of this.data.blogList){
+      for(let comment of blog.comments){
+        if(comment.creator === this.data.profileAccount.username){
+          comment.creator = this.editUsername;
+          this.data.updateComment(comment);
+        }
+      }
+      for(let view of blog.views){
+        if(view === this.data.profileAccount.username){
+          blog.views[blog.views.indexOf(view)] = this.editUsername;
+          console.log(view);
+          this.data.updateBlog(blog);
+        }
+      }
+    }
     this.data.updateAccount(updatedAccount);
     this.dialogRef.close();
   }

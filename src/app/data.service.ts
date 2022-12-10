@@ -127,6 +127,7 @@ export class DataService {
   updateBlog(blog: IBlog):void {
     this.httpService.updateBlog(blog).pipe(first()).subscribe({
       next: data => {
+        console.log(data);
         this.blogList = data;
         this.$blogList.next(this.blogList);
       },
@@ -172,10 +173,12 @@ export class DataService {
       next: data => {
         this.blogList = data;
         this.$blogList.next(this.blogList);
-        for(let blog of data){
-          if(blog.id == this.fullBlog.id){
-            this.fullBlog = blog;
-            this.$fullBlog.next(this.fullBlog);
+        if(this.fullBlog !== undefined) {
+          for (let blog of data) {
+            if (blog.id == this.fullBlog.id) {
+              this.fullBlog = blog;
+              this.$fullBlog.next(this.fullBlog);
+            }
           }
         }
       },

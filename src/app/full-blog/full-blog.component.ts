@@ -148,7 +148,11 @@ export class FullBlogComponent implements OnInit,OnDestroy{
     this.data.deleteBlog(this.blog.id);
   }
 
-  getCommentCreatorAccount(creator: any) {
-    
+  getCommentCreatorAccount(creator: string) {
+    const creatorAccount = this.data.accountList.find(account => account.username === creator);
+    if(creatorAccount !== undefined){
+      return creatorAccount;
+    }
+    return this.data.user;
   }
 }

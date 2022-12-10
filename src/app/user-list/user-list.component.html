@@ -10,7 +10,7 @@
     <img mat-card-avatar [style.background-image]="('url(' + account.profilePic + ')')" [style.background-size]="('cover')">
     <span class="username">{{account.username}}</span>
   </div>
-  <div *ngIf="showFiller === i">
+  <div *ngIf="showFiller === i" class="buttonDiv">
     <button mat-raised-button color="primary" (click)="startChat(account.username)" *ngIf="account.username !== user.username">Message</button>
     <button mat-raised-button color="primary" (click)="goToProfile(account)">View Profile</button>
   </div>

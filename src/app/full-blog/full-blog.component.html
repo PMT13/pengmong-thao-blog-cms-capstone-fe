@@ -28,7 +28,7 @@
       <mat-card [style.color]="('white')">
         <mat-card-header>
           <div mat-card-avatar class="header-image" [style.background-image]="('url(' + getCommentCreatorAccount(comment.creator).profilePic + ')')"></div>
-          <mat-card-title><span class="commentCreator">{{comment.creator}}</span></mat-card-title>
+          <mat-card-title><span class="commentCreator">{{getCommentCreatorAccount(comment.creator).username}}</span></mat-card-title>
         </mat-card-header>
         <div class="mat-card-body">
           <mat-card-subtitle>Created: {{comment.dateCreated | date:'medium'}}</mat-card-subtitle>

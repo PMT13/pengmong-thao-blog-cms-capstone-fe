@@ -83,4 +83,12 @@ export class ChatListComponent implements OnInit, OnDestroy{
     }
     return newMessagesCount;
   }
+
+  getChatParticipant(participant: string) {
+    const participantAccount = this.data.accountList.find(account => account.username === participant);
+    if(participantAccount !== undefined){
+      return participantAccount;
+    }
+    return this.data.user;
+  }
 }
