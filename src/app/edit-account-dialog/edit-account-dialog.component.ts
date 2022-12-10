@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DataService } from '../data.service';
 import { IAccount } from '../Interfaces/IAccount';
 
@@ -11,9 +12,9 @@ export class EditAccountDialogComponent {
   editUsername: string;
   editPassword: string;
   imageURL: string;
-
-
-  constructor(private data: DataService) {
+  error: boolean = false;
+  
+  constructor(private data: DataService, private dialogRef: MatDialogRef<EditAccountDialogComponent>) {
     this.editUsername = this.data.profileAccount.username;
     this.editPassword = this.data.profileAccount.password;
     this.imageURL = this.data.profileAccount.profilePic;
@@ -26,6 +27,33 @@ export class EditAccountDialogComponent {
   }
 
   saveAccount() {
+    const accountExist = this.data.accountList.find((account) => {return account.username === this.editUsername});
+    if(accountExist !== undefined){
+      if(accountExist.username !== this.data.user.username) {
+        this.data.errorMsg = "Username already exists.";
+        this.data.$errorMsg.next(this.data.errorMsg);
+        this.error = true;
+        return;
+      }
+    }
+    if(this.editUsername === undefined || this.editPassword === undefined){
+      this.data.errorMsg = "Please fill in all input fields";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
+    if(this.editUsername.includes(" ")){
+      this.data.errorMsg = "No spaces allowed in input fields";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
+    if(this.editUsername === "" || this.editPassword === ""){
+      this.data.errorMsg = "Please fill in all input fields";
+      this.data.$errorMsg.next(this.data.errorMsg);
+      this.error = true;
+      return;
+    }
     const updatedAccount: IAccount =
       {
         id: this.data.profileAccount.id,
@@ -34,6 +62,7 @@ export class EditAccountDialogComponent {
         profilePic: this.imageURL
       }
     this.data.updateAccount(updatedAccount);
+    this.dialogRef.close();
   }
 
   badImg($event: ErrorEvent) {

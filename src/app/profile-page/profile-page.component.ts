@@ -19,7 +19,8 @@ export class ProfilePageComponent implements OnInit, OnDestroy{
   
   sub!: Subscription;
   subTwo!: Subscription;
-
+  subThree!: Subscription;
+  
   constructor(private data: DataService, public dialog: MatDialog) {
     this.sub = this.data.$blogList.subscribe({
       next: data => {
@@ -46,11 +47,21 @@ export class ProfilePageComponent implements OnInit, OnDestroy{
         alert(err);
       }
     })
+
+    this.subThree = this.data.$user.subscribe({
+      next: data => {
+        this.user = data.username;
+      },
+      error: err =>{
+        alert(err);
+      }
+    })
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
     this.subTwo.unsubscribe();
+    this.subThree.unsubscribe();
   }
 
   ngOnInit(): void {

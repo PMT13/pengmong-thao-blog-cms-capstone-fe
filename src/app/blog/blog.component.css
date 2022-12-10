@@ -5,6 +5,7 @@ mat-card-header{
 .mat-mdc-card-avatar{
   width:50px;
   height:50px;
+  background-position: center;
 }
 
 mat-icon{
@@ -27,4 +28,11 @@ mat-card{
 
 mat-card-header{
   margin-bottom: 2%;
+}
+
+.imgDiv{
+  height: 200px;
+  width:100%;
+  background-size: cover;
+  background-position: center;
 }

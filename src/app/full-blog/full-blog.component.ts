@@ -6,6 +6,7 @@ import { HttpService } from '../http.service';
 import { IBlog } from '../Interfaces/IBlog';
 import {MatDialog} from '@angular/material/dialog';
 import { EditBlogDialogComponent } from '../edit-blog-dialog/edit-blog-dialog.component';
+import { IAccount } from '../Interfaces/IAccount';
 
 @Component({
   selector: 'app-full-blog',
@@ -15,8 +16,8 @@ import { EditBlogDialogComponent } from '../edit-blog-dialog/edit-blog-dialog.co
 export class FullBlogComponent implements OnInit,OnDestroy{
   blog!: IBlog;
 
-  author!: string;
-  user!: string;
+  author!: IAccount;
+  user!: IAccount;
   isUser!: boolean;
 
   isEditingComment: number = -1;
@@ -40,7 +41,7 @@ export class FullBlogComponent implements OnInit,OnDestroy{
 
     this.subTwo = this.data.$user.subscribe({
       next: data => {
-        this.user = data.username;
+        this.user = data;
       },
       error: (err) => {
         alert(err);
@@ -56,11 +57,12 @@ export class FullBlogComponent implements OnInit,OnDestroy{
   ngOnInit(): void {
     this.blog = this.data.fullBlog;
     this.blog.comments = this.blog.comments.sort(function(a, b){return Date.parse(b.dateUpdated) - Date.parse(a.dateUpdated)});
-    this.user = this.data.user.username;
+    this.user = this.data.user;
+    this.author = this.user; // dummy data
     this.httpService.getAccountById(this.data.fullBlog.creatorId).pipe(first()).subscribe({
       next: data => {
-        this.author = data.username;
-        if(this.author === this.data.user.username){
+        this.author = data;
+        if(this.author.username === this.data.user.username){
           this.isUser = true;
         }else{
           this.isUser = false;
@@ -144,5 +146,9 @@ export class FullBlogComponent implements OnInit,OnDestroy{
 
   deleteBlog() {
     this.data.deleteBlog(this.blog.id);
+  }
+
+  getCommentCreatorAccount(creator: any) {
+    
   }
 }

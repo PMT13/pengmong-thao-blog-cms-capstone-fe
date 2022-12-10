@@ -7,7 +7,7 @@
       <button mat-raised-button color="primary" class="blogButtons" (click)="editBlog()">Edit</button>
     </div>
     <img mat-card-image src="{{blog.imageURL}}" alt="Blank Photo">
-    <div class="blogInfo"><strong>Author:</strong> {{author}}</div>
+    <div class="blogInfo"><strong>Author:</strong> {{author.username}}</div>
     <div class="blogInfo"><strong>Created:</strong> {{blog.dateCreated | date:'medium'}}</div>
     <div class="blogInfo"><strong>Last Updated:</strong> {{blog.dateUpdated | date:'medium'}}</div>
     <div class="blogBody" [style.font-size]='(blog.fontSize + "px")'>{{blog.body}}</div>
@@ -27,7 +27,7 @@
     <div *ngFor="let comment of blog.comments; let i = index" class="commentDiv">
       <mat-card [style.color]="('white')">
         <mat-card-header>
-          <div mat-card-avatar class="header-image"></div>
+          <div mat-card-avatar class="header-image" [style.background-image]="('url(' + getCommentCreatorAccount(comment.creator).profilePic + ')')"></div>
           <mat-card-title><span class="commentCreator">{{comment.creator}}</span></mat-card-title>
         </mat-card-header>
         <div class="mat-card-body">
@@ -40,7 +40,7 @@
             <textarea matInput placeholder="Comment here..." maxlength="256" [(ngModel)]="commentBody"></textarea>
             <mat-hint align="end">{{commentBody.length}} / 256</mat-hint>
           </mat-form-field>
-          <div *ngIf="comment.creator === user">
+          <div *ngIf="comment.creator === user.username">
             <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment !== i" (click)="editComment(i)">Edit</button>
             <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment !== i" (click)="deleteComment(i)">Delete</button>
             <button mat-raised-button color="primary" class="commentButtons" *ngIf="isEditingComment === i" (click)="cancelEdit(i)">Cancel</button>

@@ -6,9 +6,9 @@
   <div class="sidenav-content" #sidenavContent>
     <p>
       <mat-toolbar color="primary">
-        <span>IBlog</span>
+        <span style="font-family: 'Marker Felt, fantasy';font-size: 32px;">IBlog.ts</span>
         <span class="example-spacer"></span>
-        <span class="center-nav" (click)="goToBlogsList()" *ngIf="isloggedIn" style="margin-left:7%;">Blogs<mat-icon class="blogsIcon">library_books</mat-icon></span>
+        <span class="center-nav" (click)="goToBlogsList()" *ngIf="isloggedIn" style="margin-left:2.6%;">Blogs<mat-icon class="blogsIcon">library_books</mat-icon></span>
         <span class="center-nav" (click)="drawer.toggle()" *ngIf="isloggedIn">Users<mat-icon class="usersIcon">people</mat-icon></span>
         <span class="example-spacer"></span>
         <span class="profileDiv" [matMenuTriggerFor]="menu" *ngIf="isloggedIn">

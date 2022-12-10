@@ -13,13 +13,16 @@ import { IBlog } from '../Interfaces/IBlog';
 export class BlogComponent implements OnInit, OnDestroy{
   @Input() blog!: IBlog;
   user!: IAccount;
-  blogAuthor!: string;
+  blogAuthor!: IAccount;
   sub:Subscription;
 
   constructor(private data: DataService, private httpService: HttpService) {
     this.sub = this.data.$user.subscribe({
       next: data =>{
         this.user = data;
+        if(this.user.id === this.blog.creatorId){
+          this.blogAuthor = data;
+        }
       },
       error: err => {
         alert(err)
@@ -29,9 +32,10 @@ export class BlogComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.user = this.data.user;
+    this.blogAuthor = this.data.user;   // dummy data
     this.httpService.getAccountById(this.blog.creatorId).pipe(first()).subscribe({
       next: data => {
-        this.blogAuthor = data.username;
+        this.blogAuthor = data;
       },
       error: (err) => {
         alert(err);
