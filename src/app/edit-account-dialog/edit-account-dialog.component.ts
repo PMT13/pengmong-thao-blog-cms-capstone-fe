@@ -76,6 +76,22 @@ export class EditAccountDialogComponent {
         }
       }
     }
+    for(let chat of this.data.chatList){
+      if(chat.person1 === this.data.profileAccount.username){
+        chat.person1 = this.editUsername;
+        this.data.updateChat(chat);
+      }
+      if(chat.person2 === this.data.profileAccount.username){
+        chat.person2 = this.editUsername;
+        this.data.updateChat(chat);
+      }
+      for(let message of chat.messages){
+        if(message.creator === this.data.profileAccount.username){
+          message.creator = this.editUsername;
+        }
+        this.data.updateChat(chat);
+      }
+    }
     this.data.updateAccount(updatedAccount);
     this.dialogRef.close();
   }
