@@ -54,7 +54,7 @@ h1 {
 .message-box {
   padding: 10px;
   box-sizing: border-box;
-  background-color: rgba(255, 243, 242, 0.7);
+  background-color: rgba(255, 243, 242);
   height: 100%;
   overflow-y: scroll;
   display: flex;
